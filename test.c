@@ -8,23 +8,28 @@
 // #include "tasks.h"
 
 
-double derivative(double (*f)(double), double x0)
-{
-    const double delta = 1.0e-6; // or similar
-    double x1 = x0 - delta;
-    double x2 = x0 + delta;
-    double y1 = f(x1);
-    double y2 = f(x2);
-    return (y2 - y1) / (x2 - x1);
-}
+void count2(int* counter){
+   
+    int temp = *counter;
+    *counter = temp + 1;
 
-double f(double x){
-    return x*x;
+    return;
 }
+void count(int* counter){
+    count2(counter);
 
+    printf("counter = %d\n", *counter);
+
+    return;
+}
 int main(int argc, char *argv[]) {
 
-    printf("hello man %lf", derivative(f, 10));
+    
+    int* counter = (int *)malloc(sizeof(int));
+    *counter = 0;
+    while(1){
+        count(counter);
+    }
 
 
     return 1;
